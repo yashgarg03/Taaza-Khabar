@@ -41,7 +41,7 @@ const News = (props)=>{
         setPage(page+1) 
         let data = await fetch(url);
         let parsedData = await data.json()
-        setArticles(articles.concat(parsedData.articles))
+        setArticles(articles?.concat(parsedData.articles))
         setTotalResults(parsedData.totalResults)
       };
  
@@ -52,13 +52,13 @@ const News = (props)=>{
                 <InfiniteScroll
                     dataLength={articles?.length}
                     next={fetchMoreData}
-                    hasMore={articles.length !== totalResults}
+                    hasMore={articles?.length !== totalResults}
                     loader={<Spinner/>}
                 > 
                     <div className="container">
                          
                     <div className="row">
-                        {articles.map((element) => {
+                        {articles?.map((element) => {
                             return <div className="col-md-4" key={element.url}>
                                 <NewsItem title={element.title ? element.title : ""} description={element.description ? element.description : ""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
                             </div>
